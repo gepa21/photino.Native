@@ -115,6 +115,11 @@ extern "C"
 		instance->GetZoom(zoom);
 	}
 
+	EXPORTED void Photino_GetWindowHandle(Photino* instance, long unsigned int* handle)
+	{
+		instance->GetWindowHandle(handle);
+	}
+
 	EXPORTED void Photino_NavigateToString(Photino* instance, AutoString content)
 	{
 		instance->NavigateToString(content);

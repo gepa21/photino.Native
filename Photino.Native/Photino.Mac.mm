@@ -312,6 +312,11 @@ void Photino::GetZoom(int* zoom)
 	*zoom = (int)rawValue;
 }
 
+void Photino::GetWindowHandle(long unsigned int** handle)
+{
+	*handle = 0;
+}
+
 void Photino::NavigateToString(AutoString content)
 {
     [_webview loadHTMLString: [NSString stringWithUTF8String: content] baseURL: nil];

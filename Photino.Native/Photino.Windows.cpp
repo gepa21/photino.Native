@@ -248,16 +248,16 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
 	switch (uMsg)
 	{
-	case WM_CREATE: 
+	case WM_CREATE:
 	{
 		EnableDarkMode(hwnd, true);
-		if (IsDarkModeEnabled()) 
+		if (IsDarkModeEnabled())
 		{
 			RefreshNonClientArea(hwnd);
 		}
 		break;
 	}
-	case WM_SETTINGCHANGE: 
+	case WM_SETTINGCHANGE:
 	{
 		if (IsColorSchemeChange(lParam))
 			SendMessageW(hwnd, WM_THEMECHANGED, 0, 0);
@@ -272,11 +272,11 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 	case WM_ACTIVATE:
 	{
 		Photino* Photino = hwndToPhotino[hwnd];
-		if (LOWORD(wParam) == WA_INACTIVE) 
+		if (LOWORD(wParam) == WA_INACTIVE)
 		{
 			Photino->InvokeFocusOut();
 		}
-		else 
+		else
 		{
 			Photino->InvokeFocusIn();
 		}
@@ -488,6 +488,10 @@ void Photino::GetZoom(int* zoom)
 	*zoom = (int)rawValue;
 }
 
+void Photino::GetWindowHandle(long unsigned int* handle)
+{
+	*handle = 0;
+}
 
 
 void Photino::NavigateToString(AutoString content)
@@ -695,7 +699,7 @@ void Photino::GetAllMonitors(GetAllMonitorsCallback callback)
 {
 	if (callback)
 	{
-		EnumDisplayMonitors(NULL, NULL, (MONITORENUMPROC) MonitorEnum, (LPARAM)callback);
+		EnumDisplayMonitors(NULL, NULL, (MONITORENUMPROC)MonitorEnum, (LPARAM)callback);
 	}
 }
 
@@ -860,7 +864,7 @@ bool Photino::InstallWebView2()
 
 	if (S_OK == URLDownloadToFile(NULL, srcURL, destFile, 0, NULL))
 	{
-		LPWSTR command = new wchar_t[100]{ L"MicrosoftEdgeWebview2Setup.exe\0" };	//add these switches? /silent /install
+		LPWSTR command = new wchar_t[100] { L"MicrosoftEdgeWebview2Setup.exe\0" };	//add these switches? /silent /install
 
 		STARTUPINFO si;
 		PROCESS_INFORMATION pi;
@@ -881,7 +885,7 @@ bool Photino::InstallWebView2()
 			&si,        // Pointer to STARTUPINFO structure
 			&pi);		// Pointer to PROCESS_INFORMATION structure
 
-		if(success)
+		if (success)
 		{
 			// wait for the installation to complete
 			WaitForSingleObject(pi.hProcess, INFINITE);

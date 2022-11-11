@@ -10,6 +10,7 @@
 #include <sstream>
 #include <iomanip>
 #include <libnotify/notify.h>
+#include <gdk/gdkx.h>
 
 /* --- PRINTF_BINARY_FORMAT macro's --- */
 //#define FMT_BUF_SIZE (CHAR_BIT*sizeof(uintmax_t)+1)
@@ -358,6 +359,11 @@ void Photino::GetZoom(int* zoom)
 	rawValue = webkit_web_view_get_zoom_level(WEBKIT_WEB_VIEW(_webview));
 	rawValue = (rawValue * 100.0) + 0.5;
 	*zoom = (int)rawValue;
+}
+
+void Photino::GetWindowHandle(long unsigned int* handle)
+{
+	*handle =  gdk_x11_window_get_xid(gtk_widget_get_window(_window));
 }
 
 

@@ -192,6 +192,7 @@ public:
 	AutoString GetTitle();
 	void GetTopmost(bool *topmost);
 	void GetZoom(int *zoom);
+	void GetWindowHandle(long unsigned int* handle);
 
 	void NavigateToString(AutoString content);
 	void NavigateToUrl(AutoString url);
